@@ -5,6 +5,9 @@ import com.example.userservice.user.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     private final UserRepository userRepository;
@@ -33,6 +36,17 @@ public class UserService {
                 user.getEmail(),
                 user.getName()
         );
+    }
+
+    public List<UserResponseDto> getUsersByIds(List<Long> ids){
+        List<User> users = userRepository.findAllById(ids);
+        return users.stream()
+                .map(user -> new UserResponseDto(
+                      user.getUserId(),
+                      user.getEmail(),
+                      user.getName()
+                ))
+                .collect(Collectors.toList());
     }
 
 }

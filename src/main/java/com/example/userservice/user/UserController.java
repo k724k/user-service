@@ -5,6 +5,8 @@ import com.example.userservice.user.dto.UserResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -26,5 +28,14 @@ public class UserController {
     public ResponseEntity<UserResponseDto> getUser(@PathVariable Long userId) {
         UserResponseDto userResponseDto = userService.getUser(userId);
         return ResponseEntity.ok(userResponseDto);
+    }
+
+    @GetMapping()
+    public ResponseEntity<List<UserResponseDto>> getUsersByIds(
+            @RequestParam List<Long> ids
+    ) {
+        List<UserResponseDto> userResponseDtos = userService.getUsersByIds(ids);
+        return ResponseEntity.ok(userResponseDtos);
+
     }
 }
