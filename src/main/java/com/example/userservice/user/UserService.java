@@ -1,5 +1,7 @@
 package com.example.userservice.user;
 
+import com.example.userservice.user.dto.UserDto;
+import com.example.userservice.user.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,4 +23,16 @@ public class UserService {
 
         this.userRepository.save(user);
     }
+
+    public UserResponseDto getUser(Long id){
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        return new UserResponseDto(
+                user.getUserId(),
+                user.getEmail(),
+                user.getName()
+        );
+    }
+
 }
