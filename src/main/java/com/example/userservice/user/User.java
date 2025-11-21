@@ -16,6 +16,8 @@ public class User {
 
     private String password;
 
+    private int activityScore = 0;
+
     public User() {}
 
     public User(String email, String name, String password) {
@@ -39,4 +41,13 @@ public class User {
     public String getPassword() {
         return password;
     }
+
+    public int getActivityScore() {
+        return activityScore;
+    }
+
+    public void addActivityScore(int score) {
+        this.activityScore += score;
+    }
+
 }

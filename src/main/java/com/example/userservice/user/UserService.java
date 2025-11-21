@@ -1,5 +1,7 @@
 package com.example.userservice.user;
 
+import com.example.userservice.user.client.PointClient;
+import com.example.userservice.user.dto.AddActivityScoreRequestDto;
 import com.example.userservice.user.dto.UserDto;
 import com.example.userservice.user.dto.UserResponseDto;
 import org.springframework.stereotype.Service;
@@ -10,10 +12,13 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-    private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
+    private final UserRepository userRepository;
+    private final PointClient pointClient;
+
+    public UserService(UserRepository userRepository, PointClient pointClient) {
         this.userRepository = userRepository;
+        this.pointClient = pointClient;
     }
 
     @Transactional
@@ -24,7 +29,10 @@ public class UserService {
                 signUpRequestDto.getPassword()
         );
 
-        this.userRepository.save(user);
+        User savedUser = this.userRepository.save(user);
+
+        // 회원가입하면 포인트 1000점 적립
+        pointClient.addPoints(savedUser.getUserId(), 1000);
     }
 
     public UserResponseDto getUser(Long id){
@@ -47,6 +55,18 @@ public class UserService {
                       user.getName()
                 ))
                 .collect(Collectors.toList());
+    }
+
+    @Transactional
+    public void addActivityScore(
+            AddActivityScoreRequestDto addActivityScoreRequestDto
+    ) {
+        User user = userRepository.findById(addActivityScoreRequestDto.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        user.addActivityScore(addActivityScoreRequestDto.getScore());
+
+        userRepository.save(user);
     }
 
 }
