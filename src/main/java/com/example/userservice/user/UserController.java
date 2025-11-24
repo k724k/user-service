@@ -1,8 +1,6 @@
 package com.example.userservice.user;
 
-import com.example.userservice.user.dto.AddActivityScoreRequestDto;
-import com.example.userservice.user.dto.UserDto;
-import com.example.userservice.user.dto.UserResponseDto;
+import com.example.userservice.user.dto.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,4 +24,12 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 
+    // 로그인
+    @PostMapping("login")
+    public ResponseEntity<LoginResponseDto> login(
+            @RequestBody LoginRequestDto loginRequestDto
+    ) {
+        LoginResponseDto loginResponseDto = userService.login(loginRequestDto);
+        return ResponseEntity.ok(loginResponseDto);
+    }
 }
