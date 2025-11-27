@@ -29,6 +29,12 @@ Kafka 이벤트와 REST API를 통해 포인트·게시판 서비스와 연동�
 - 활동 점수 추가
     - 게시글 작성 이벤트 수신 시 사용자 조회 후 활동 점수 적립 기능
     - Id 값에 따른 사용자 조회 후 활동 점수 추가
+      
+## ✅ Services
+- [api-gateway-service](https://github.com/k724k/api-gateway-service)
+- [user-service](https://github.com/k724k/user-service)
+- [board-service](https://github.com/k724k/board-service)
+- [point-service](https://github.com/k724k/point-serivce)
 
 ## ✅ Tech Stack
 <div align="left">
