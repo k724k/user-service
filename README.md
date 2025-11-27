@@ -1,4 +1,4 @@
-# 👥 user-service
+# 🏷️ user-service
 
 ## ✅ Overview
 - Apache Kafka를 이용한 이벤트 발행 및 소비(컨슈머) 패턴 적용
@@ -22,7 +22,6 @@
   <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white" />&nbsp
   <img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" />&nbsp
 </div>
-
 
 ## ✅ etc
 <img width="537" height="256" alt="Image" src="https://github.com/user-attachments/assets/0d641744-cee8-4561-a517-0017d0a39dd2" />
