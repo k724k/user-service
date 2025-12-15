@@ -29,3 +29,11 @@ client:
 
 jwt:
   secret: jscode-secret-1234-1234-1234-1234
+
+  springdoc:
+    api-docs:
+      enabled: true
+      path: /v3/api-docs
+    swagger-ui:
+      enabled: true
+      path: /swagger-ui.html
